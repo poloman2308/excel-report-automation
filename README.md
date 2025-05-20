@@ -128,4 +128,4 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 **Derek Acevedo**
-GitHub • LinkedIn
+[GitHub](https://github.com/poloman2308) • [LinkedIn](https://www.linkedin.com/in/derekacevedo86)
