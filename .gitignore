@@ -1,0 +1,8 @@
+# Ignore generated files
+/reports/
+/*.zip
+*.log
+__pycache__/
+/*.pyc
+.DS_Store
+.env
