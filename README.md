@@ -94,9 +94,9 @@ python main.py --input data\sales_march.csv --output_dir reports --logo template
 ## 🔧 Customization
 
 ```
-Extend BaseReport to define new report types
-Add Excel formatting/styling in sales_report.py
-Upload results to SharePoint, OneDrive, or email via smtplib
+- Extend `BaseReport` to define new report types  
+- Add Excel formatting/styling in `sales_report.py`  
+- Upload results to SharePoint, OneDrive, or email via `smtplib`
 ```
 
 ---
@@ -104,9 +104,9 @@ Upload results to SharePoint, OneDrive, or email via smtplib
 ## 🧪 Example Output
 
 ```
-RawData sheet: all records from CSV
-Summary sheet: revenue by region/product
-Pivot sheet: visual pivot table + chart
+- `RawData` sheet: all records from CSV  
+- `Summary` sheet: revenue by region/product  
+- `Pivot` sheet: visual pivot table + chart
 ```
 
 ---
