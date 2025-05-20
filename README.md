@@ -26,8 +26,6 @@
 
 ## 🗂️ Folder Structure
 
----
-
 ```
 excel_report_automation/
 ├── data/ # CSV files (input)
