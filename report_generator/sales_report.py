@@ -4,6 +4,20 @@ from .base_report import BaseReport
 from report_generator.utils import auto_size_columns, currency_format, top_5_highlight_format
 
 class SalesReport(BaseReport):
+    def generate(self):
+        self.load_data()
+
+        with pd.ExcelWriter(self.output_file, engine='xlsxwriter') as self.writer:
+            self.workbook = self.writer.book
+            self.write_raw_data()
+            self.write_summary()
+            self.write_pivot()
+            self.insert_chart()
+            
+            if self.issues:
+                self.write_issues()
+            self.export_for_powerbi()
+    
     def write_summary(self):
         summary = self.df.groupby(['Region', 'Product'])['Revenue'].sum().reset_index()
         summary.to_excel(self.writer, sheet_name='Summary', index=False)
@@ -53,3 +67,20 @@ class SalesReport(BaseReport):
         chart.set_y_axis({'name': 'Revenue'})
         chart.set_legend({'position': 'bottom'})
         pivot_ws.insert_chart('F2', chart)
+        
+    def export_for_powerbi(self):
+        summary = self.df.groupby(['Region', 'Product'])['Revenue'].sum().reset_index()
+        pivot = self.df.pivot_table(
+            index='Region',
+            columns='Product',
+            values='Revenue',
+            aggfunc='sum',
+            fill_value=0
+        ).reset_index()
+
+        export_dir = os.path.join(self.output_dir, 'powerbi')
+        os.makedirs(export_dir, exist_ok=True)
+
+        summary.to_csv(os.path.join(export_dir, 'summary.csv'), index=False)
+        pivot.to_csv(os.path.join(export_dir, 'pivot.csv'), index=False)
+
